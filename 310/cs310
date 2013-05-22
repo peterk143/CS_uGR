@@ -1,0 +1,10 @@
+(defun myfun (a)
+  (+ 1 a)
+
+  (defstruct footballplayer
+    weight
+    (height 6))
+
+(make footballplayer
+      : weight 298))
+

@@ -1,0 +1,240 @@
+SQL> @h10.sql
+SQL> /*
+SQL> 	     Peter Kirkpatrick [pkirkpat]
+SQL> 	     April 16, 2012
+SQL> 	     CS 440
+SQL> */
+SQL> --set serveroutput on format wrapped
+SQL> 
+SQL> set echo on
+SQL> 
+SQL> drop type student_ty;
+drop type student_ty
+*
+ERROR at line 1:
+ORA-02303: cannot drop or replace a type with type or table dependents 
+
+
+SQL> drop type classes_va;
+drop type classes_va
+*
+ERROR at line 1:
+ORA-02303: cannot drop or replace a type with type or table dependents 
+
+
+SQL> drop table student_plus;
+
+Table dropped.
+
+SQL> drop type classes_ref_ty;
+
+Type dropped.
+
+SQL> drop table classes;
+
+Table dropped.
+
+SQL> drop table classes_ot;
+
+Table dropped.
+
+SQL> drop type classes_ty;
+drop type classes_ty
+*
+ERROR at line 1:
+ORA-02303: cannot drop or replace a type with type or table dependents 
+
+
+SQL> 
+SQL> --Problem 1
+SQL> create or replace type classes_ty as object(
+  2  	     crn varchar2(5),
+  3  	     department varchar2(8),
+  4  	     courseTitle varchar2(25));
+  5  /
+create or replace type classes_ty as object(
+*
+ERROR at line 1:
+ORA-02303: cannot drop or replace a type with type or table dependents 
+
+
+SQL> --Problem 2
+SQL> create table classes_ot of classes_ty;
+
+Table created.
+
+SQL> --Problem 3
+SQL> create table classes(crn varchar2(5) constraint crn_pk primary key deferrable initially immediate,
+  2  	     department varchar2(8),
+  3  	     courseTitle varchar2(25));
+
+Table created.
+
+SQL> insert into classes(crn, department, courseTitle) values('12345', 'Math', 'Topology');
+
+1 row created.
+
+SQL> insert into classes(crn, department, courseTitle) values('45673', 'Math', 'Linear Algebra');
+
+1 row created.
+
+SQL> insert into classes(crn, department, courseTitle) values('45312', 'Math', 'Calculus 1');
+
+1 row created.
+
+SQL> insert into classes(crn, department, courseTitle) values('45313', 'Math', 'Calculus 2');
+
+1 row created.
+
+SQL> insert into classes(crn, department, courseTitle) values('45314', 'Math', 'Calculus 3');
+
+1 row created.
+
+SQL> insert into classes(crn, department, courseTitle) values('45315', 'Math', 'Calculus 4');
+
+1 row created.
+
+SQL> insert into classes(crn, department, courseTitle) values('31245', 'CS', 'Data Structures');
+
+1 row created.
+
+SQL> insert into classes(crn, department, courseTitle) values('34128', 'CS', 'Databases');
+
+1 row created.
+
+SQL> insert into classes(crn, department, courseTitle) values('34228', 'CS', 'Java Programming');
+
+1 row created.
+
+SQL> insert into classes(crn, department, courseTitle) values('34129', 'CS', 'Normalization Theory');
+
+1 row created.
+
+SQL> 
+SQL> insert into classes_ot(select * from classes);
+
+10 rows created.
+
+SQL> 
+SQL> --Problem 4 [not done]
+SQL> create or replace type classes_ref_ty
+  2  	     as table of ref classes_ty;
+  3  /
+
+Type created.
+
+SQL> --Problem 5
+SQL> create table student_plus(student# varchar2(11) constraint student#_pk primary key deferrable initially immediate,
+  2  	     student_name varchar2(10) constraint student_name_nn not null,
+  3  	     major varchar2(8) constraint major_nn not null,
+  4  	     advisor varchar2(10),
+  5  	     enrolled classes_ref_ty)
+  6  nested table enrolled store as enrolled_nt_tab;
+
+Table created.
+
+SQL> --Problem 6
+SQL> create or replace type classes_va as varray(7) of number;
+  2  create or replace type student_ty as object(
+  3  	     student_name varchar2(20),
+  4  	     major varchar2(25),
+  5  	     advisor varchar2(20),
+  6  	     enrolled_va classes_va,
+  7  	     member function classCount
+  8  		     return number);
+  9  /
+create or replace type classes_va as varray(7) of number;
+*
+ERROR at line 1:
+ORA-02303: cannot drop or replace a type with type or table dependents 
+
+
+SQL> create table student(student_id varchar2(12) constraint student_id_pk primary key deferrable initially immediate,
+  2  	     student_info student_ty);
+create table student(student_id varchar2(12) constraint student_id_pk primary key deferrable initially immediate,
+             *
+ERROR at line 1:
+ORA-00955: name is already used by an existing object 
+
+
+SQL> insert into student(student_id, student_info) values(
+  2  	     '700-123-908', student_ty('Jones', 'MATH', 'VanScoy', 45673, 34228, 45315));
+	'700-123-908', student_ty('Jones', 'MATH', 'VanScoy', 45673, 34228, 45315))
+	               *
+ERROR at line 2:
+ORA-02315: incorrect number of arguments for default constructor 
+
+
+SQL> insert into student(student_id, student_info) values(
+  2  	     '700-123-911', student_info('Smith', 'CS', 'Cukic', 45312, 45315));
+	'700-123-911', student_info('Smith', 'CS', 'Cukic', 45312, 45315))
+	               *
+ERROR at line 2:
+ORA-00904: "STUDENT_INFO": invalid identifier 
+
+
+SQL> insert into student(student_id, student_info) values(
+  2  	     '700-123-912', student_info('Adams', 'BIOM', 'VanScoy'));
+	'700-123-912', student_info('Adams', 'BIOM', 'VanScoy'))
+	               *
+ERROR at line 2:
+ORA-00904: "STUDENT_INFO": invalid identifier 
+
+
+SQL> insert into student(student_id, student_info) values(
+  2  	     '700-123-913', student_info('Grant', 'STAT', 'Graham', 34128));
+	'700-123-913', student_info('Grant', 'STAT', 'Graham', 34128))
+	               *
+ERROR at line 2:
+ORA-00904: "STUDENT_INFO": invalid identifier 
+
+
+SQL> insert into student(student_id, student_info) values(
+  2  	     '700-123-918', student_info('Sherman', 'CS', 'Ross', 34128, 34129, 34228));
+	'700-123-918', student_info('Sherman', 'CS', 'Ross', 34128, 34129, 34228))
+	               *
+ERROR at line 2:
+ORA-00904: "STUDENT_INFO": invalid identifier 
+
+
+SQL> insert into student(student_id, student_info) values(
+  2  	     '700-123-928', student_info('Hood', 'CS', 'VanScoy', 45673));
+	'700-123-928', student_info('Hood', 'CS', 'VanScoy', 45673))
+	               *
+ERROR at line 2:
+ORA-00904: "STUDENT_INFO": invalid identifier 
+
+
+SQL> insert into student(student#, student_info) values(
+  2  	     '700-123-938', student_info('Lee', 'SENG', 'Menzies', 45673, 34228));
+	'700-123-938', student_info('Lee', 'SENG', 'Menzies', 45673, 34228))
+	               *
+ERROR at line 2:
+ORA-00904: "STUDENT_INFO": invalid identifier 
+
+
+SQL> insert into student(student#, student_info) values(
+  2  	     '700-123-948', student_info('Hooker', 'CS', 'VanScoy', 45673, 34228, 45315, 34129));
+	'700-123-948', student_info('Hooker', 'CS', 'VanScoy', 45673, 34228, 45315, 34129))
+	               *
+ERROR at line 2:
+ORA-00904: "STUDENT_INFO": invalid identifier 
+
+
+SQL> /
+	'700-123-948', student_info('Hooker', 'CS', 'VanScoy', 45673, 34228, 45315, 34129))
+	               *
+ERROR at line 2:
+ORA-00904: "STUDENT_INFO": invalid identifier 
+
+
+SQL> insert into student_plus(select * from student);
+insert into student_plus(select * from student)
+            *
+ERROR at line 1:
+ORA-00947: not enough values 
+
+
+SQL> --Problem 7
+SQL> --Problem 8
+SQL> spool off

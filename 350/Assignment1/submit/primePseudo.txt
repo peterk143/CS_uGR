@@ -1,0 +1,32 @@
+// Peter Kirkpatrick
+// CS350 Prime Number Pseudo Code
+
+2a.
+	real 0m0.265s
+	user 0m0.256s
+	sys 0m0.004s
+
+	void prime(int n){
+	     // from i = 1 to n
+	     	// if i is a multiple of n
+		   // add one to counter
+
+	     // if only 2 multiples
+	     	// prime number
+	}
+	
+2b.
+	real 0m0.044s
+	user 0m0.040s
+	sys 0m0.004s
+
+	void primeS(int size){
+	     // initialize an array to all 1's
+
+	     // for every element whose subscript
+	     // is a multiple of that subscript
+	     	// set that element to 0
+
+	    // print off the indeces of the elements
+	    // that contained 1's
+	}

@@ -1,0 +1,77 @@
+public class IntStack
+{
+  private IntNode head;
+  private int count;
+  
+  public IntStack()
+  {
+    head = null;
+    count = 0;
+  }// end IntStack constructor
+  
+  //input parameters = a newValue to be placed into the node
+  public void push(int newValue)
+  {
+    IntNode aNode = new IntNode(newValue);
+    IntNode temp = null;
+    
+    //if the count == 0 then it will set the 
+    //head to the address of aNode and increase
+    //the count by one
+    if(count == 0)
+    {
+      head = aNode;
+      ++count;
+    }// end if
+    
+    //otherwise aNode's next pointer will be
+    //set to the head of the stack, then head
+    //will be reassigned to aNode and the count
+    //will be increased by one
+    else
+    {
+      aNode.setNext(head);
+      head = aNode;
+      ++count;
+    }// end else
+  }// end push()
+  
+  public int pop()
+  {
+    int result = -999;
+    
+    //if the count == 1 the it will return the
+    //item number stored in head and decrease
+    //the count by one
+    if(count == 1)
+    {
+      result = head.getItem();
+      --count;
+    }// end if
+    
+    //otherwise it will get the item number in 
+    //head and set it equal to result, then settting
+    //head equal to the next node and then decreasing
+    //the count
+    else
+    {
+      result = head.getItem();
+      head = head.getNext();
+      --count;
+    }// end else
+    
+    //returns the result
+    return result;
+  }// end pop()
+  
+  public static void main(String[] args)
+  {
+    IntStack aStack = new IntStack();
+    
+    aStack.push(1);
+    aStack.push(2);
+    aStack.push(3);
+    System.out.println(aStack.pop());
+    System.out.println(aStack.pop());
+  }// end main
+}// end IntStack

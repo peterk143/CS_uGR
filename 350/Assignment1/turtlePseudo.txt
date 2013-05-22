@@ -1,0 +1,38 @@
+// Peter Kirkpatrick
+// CS350 Turtle Graphics Pseudo Code
+
+3.
+	struct pad{
+	   // having int fields: row, col, x, y, drawp, 2Darray
+	
+	}
+
+	
+	pad getPad(){	// use singleton
+	   // create a pad
+	}
+
+	pad clearPad(pad p){
+	    // reset the pad
+	}
+
+	void console(pad p, int choice){
+	     switch(choice)
+		case 1
+		     // set pen up
+		case 2
+		     // set pen down
+		case 3
+		     // turn left
+		case 4
+		     // turn right
+		case 5
+		     // go forward
+		case 6
+		     // print the pad
+		case 9
+		     // terminate
+	}
+
+	void sketchPad(pad p){
+	     // print 2d array to screen

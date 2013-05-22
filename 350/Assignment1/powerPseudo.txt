@@ -1,0 +1,26 @@
+// Peter Kirkpatrick
+// CS350 Power Function Pseudo Code
+
+1a.
+	real 0m1.430s
+	user 0m0.000s
+	sys 0m0.012s
+
+	int integerPower(int x, int y){
+	   // for i < y
+	      // multiply x and the sum
+	   
+	   return sum
+	}
+
+1b.
+	real 0m1.254s
+	user 0m0.000s
+	sys 0m0.012s
+
+	int power(int x, int y){
+	    // if y = 0 :  base case
+	       // return 1
+	    // else
+	       // recursively call (x * power(x, y-1))
+	}

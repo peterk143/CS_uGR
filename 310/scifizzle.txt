@@ -1,0 +1,51 @@
+(defparameter *syfy-grammar*
+  '((start -> (earth IsStressed))
+    (IsStressed -> (catestrophes science attack collision))
+    (catestrophe -> ((catestrophe and possibleMegaDeath)
+		     (burnsUp freezes fallsIntoSun)))
+    (collision -> (isStruckByAGiant Floater andThen))
+    (floater -> (comet asteroid cloud))
+    (andThen -> (butIsSaved andIsDestroyed andMagicallySaved))
+    (possibleMegaDeath -> (everybodyDies some goOn))
+    (someSaved -> (somePeople everybody almostEverybody))
+    (goOn -> (dies rescued saved))
+    (rescued -> ((isRescuedBy Sizes Extraterestrial Beings)))
+    (saved -> ((buIsSavedBy SomeOne scientists the Science)))
+    (someOne -> (earth extraterestrial))
+    (science -> ((scientists DoSomething Sizes Beings whichEtc)))
+    (doSomething -> (invent discover))
+    (attack -> ((isAttackedBy sizes extraterestrial beings whichEtc)))
+    (sizes -> (tiny giant enormous))
+    (extraterestrial -> (martian lunar extraGalactic))
+    (beings -> (bugs reptiles blobs superbeings))
+    (whichEtc -> ((who wantSomething)))
+    (wantSomething -> (wantWomen (areFriendly and DenoumentOrHappyEnding)
+		       (understand butEtc)))
+    (understand -> ((areFriendly butMisunderstood) misunderstandUs 
+		    understandUsAllTooWell hungry))
+    (denounmentOrHappyEnding -> (denoument HappyEnding))
+    (dine -> ((hungry and eat us denoument?)))
+    (hungry -> (lookUponUsAsASourceOfNourishment))
+    (wantWomen -> ((wantOurWomen AndTakeAFewAndLeave)))
+    (butEtc -> ((andAre radioactive and tryToKill)))
+    (andAre -> (andAre andAreNot))
+    (killers -> (killer (killer and killer)))
+    (killer -> (aCrowdOfPeasants theArmy theNavy theAirForce theMarines 
+		theCoastGuard theAtomBomb))
+    (tryToKill -> ((can be killed by killers) 
+		   (can not be killed by killers soEtc)))
+    (soEtc -> (butTheyDieFromCatchingACold soTheyKillUs 
+	       soTheyPutUsUnderABenignDictatorship soTheyEatUs
+	       (soScientistsInventAWeapon which) (but denoument)))
+    (which -> (whichTurnsThemIntoDisgustingLumps whichKillsThem 
+	       (whichFails soEtc)))
+    (denoument? -> (() denoument))
+    (denoument -> ((aCuteLittleKidConvincesThemPeopleAreOK ending) 
+		   (aPriestTalksToThemOfGod ending)
+		   (theyFallInLoveWithThisBeautifulGirl endSadorHappy)))
+    (endSadorHappy -> (ending happyEnding))
+    (ending -> (andTheyDie andTheyLeave andTheyTurnIntoDisgustingLumps))
+    (happyEnding -> ((andTheyGetMarriedAndLiveHappilyForever)))))
+
+     
+

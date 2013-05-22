@@ -1,0 +1,21 @@
+declare
+	type t_collection is varray(5) of number(10);
+
+	l_coll t_collection;
+	l_idx number;
+begin
+	l_coll := t_collection(1, 2);
+	
+	for i in 3 .. 5 loop
+		l_coll.extend;
+		l_coll(l_coll.last) := i;
+	end loop;
+
+	i_idx := l_coll.first;
+	
+	while l_idx is not null loop
+		dbms_output.put_line('The number ' || l_coll(l_idx));
+		l_idx := l_coll.next(l_idx);
+	end loop;
+end
+/

@@ -1,0 +1,41 @@
+/*
+	Peter Kirkpatrick [pkirkpat]
+	April 16, 2012
+	CS 440
+*/
+--set serveroutput on format wrapped
+
+set echo on
+
+--Problem 1
+create or replace type classes_ty as object(
+	crn varchar2(5),
+	department varchar2(8),
+	courseTitle varchar2(25);)
+/
+--Problem 2
+create table classes_ot of classes_ty;
+/
+--Problem 3
+drop table classes;
+create table classes(crn number constraint crn_pk primary key deferrable initially immediate,
+	department varchar2(25),
+	course_name varchar2(25));
+insert into classes(crn, department, course_name) values(12345, 'Math', 'Topology');
+insert into classes(crn, department, course_name) values(45673, 'Math', 'Linear Algebra');
+insert into classes(crn, department, course_name) values(45312, 'Math', 'Calculus 1');
+insert into classes(crn, department, course_name) values(45313, 'Math', 'Calculus 2');
+insert into classes(crn, department, course_name) values(45314, 'Math', 'Calculus 3');
+insert into classes(crn, department, course_name) values(45315, 'Math', 'Calculus 4');
+insert into classes(crn, department, course_name) values(31245, 'CS', 'Data Structures');
+insert into classes(crn, department, course_name) values(34128, 'CS', 'Databases');
+insert into classes(crn, department, course_name) values(34228, 'CS', 'Java Programming');
+insert into classes(crn, department, course_name) values(34129, 'CS', 'Normalization Theory');
+
+insert into classes_ot
+select * from classes;
+/
+--Problem 4 [not done]
+create or replace type classes_ref_ty 
+	as table of classes_ot;
+/

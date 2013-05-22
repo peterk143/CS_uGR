@@ -1,0 +1,75 @@
+//***********************************************************
+//Programmer:          Peter Kirkpatrick
+//Date:                January 30, 2009
+//Program Description: This program makes a class to be used
+//                     in conjunction with a CS Grade Book.
+//***********************************************************
+
+public class CSStudent
+{
+	private String firstName = "unknown";
+	private String lastName = "unknown";
+	private double test1 = 0;
+	private double test2 = 0;
+	private double test3 = 0;
+	private double hmwk1 = 0;
+	private double hmwk2 = 0;
+	private double hmwk3 = 0;
+	private double semFinal = 0;
+	private double semAvg = 0;
+	private char letGrade = '-';
+			
+	//constructor
+	public CSStudent(String first, String last,
+						double t1, double t2, double t3,
+						double h1, double h2, double h3,
+						double fin, double avg, char grade)
+	{
+		firstName = first;
+		lastName = last;
+		test1 = t1;
+		test2 = t2;
+		test3 = t3;
+		hmwk1 = h1;
+		hmwk2 = h2;
+		hmwk3 = h3;
+		semFinal = fin;
+		semAvg = avg;
+		letGrade = grade;
+	}// end of constructor
+	
+	public void compute()
+	{
+		semAvg = (test1 * .20) + (test2 * .20) + (test3 * .20) + 
+					(((hmwk1 + hmwk2 + hmwk3) / 3) * .15) + (semFinal * .25);
+		
+		if(semAvg >= 90)
+		{
+			letGrade = 'A';
+		}
+			else if(semAvg >= 80)
+			{
+				letGrade = 'B';
+			}
+				else if(semAvg >= 70)
+				{
+					letGrade = 'C';
+				}
+					else if(semAvg >= 60)
+					{
+						letGrade = 'D';
+					}
+						else if(semAvg < 60)
+						{
+							letGrade = 'F';
+						}
+	}// end of compute
+	
+	public void print()
+	{
+		System.out.print(lastName + "\t\t" + firstName + "\t\t");
+		System.out.printf(test1, "%.2f \t", test2, "%.2f \t", test3, "%.2f \t");
+		System.out.printf(hmwk1 , "%.2f\t" , hmwk2 , "%.2f\t" , hmwk3 , "%.2f\t");
+		System.out.printf(semFinal , "%.2f\t" , semAvg , "%.2f\t" , letGrade , "\t");
+	}// end of print
+}// end of class

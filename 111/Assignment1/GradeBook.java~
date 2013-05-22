@@ -1,0 +1,28 @@
+//***********************************************************
+//Programmer:          Peter Kirkpatrick
+//Date:                January 30, 2009
+//Program Description: This program implements a program to
+//                     manage an instructor's grade book.
+//***********************************************************
+
+import java.util.*;
+import java.io.*;
+
+public class GradeBook
+{
+	static Scanner console = new Scanner(System.in);
+			
+	public static void main(String[] args)
+	{
+		int num, i;
+		Student[] stdnt = new Student[num];
+		
+		System.out.print("Class Size: ");
+		num = console.nextInt();
+		
+		//inputs each stdnt instance
+		//into the array
+		for(i = num; i > 0; i--)
+		{
+			stdnt[num] = console.nextInt();
+		}

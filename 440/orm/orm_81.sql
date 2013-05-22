@@ -1,0 +1,2 @@
+insert into school (department_id, department_name, faculty) values
+       (123, 'CSEE', advisor_nt(advisor_ty('Vanscoy',111111111,'CSEE', student_nt(student_ty('Jones',7001, 'Cpe'),student_ty('Miller',7345,'CS'))), advisor_ty('Tanner', 222222222, 'CSEE', student_nt())));

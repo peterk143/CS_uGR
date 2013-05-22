@@ -1,0 +1,36 @@
+import java.lang.Comparable;
+
+public class Student2 implements Comparable
+{
+  //global variables
+  private int StudentID;
+  private String firstName;
+  private String lastName;
+  
+  //studetn constructor
+  public Student2(int id, String fn, String ln)
+  {
+    StudentID = id;
+    firstName = fn;
+    lastName = ln;
+  }// end Student constructor
+  
+  //returns the studentID
+  public int getID()
+  {
+    return this.StudentID;
+  }// end getID()
+  
+  public int compareTo(Object st)
+  {
+    Student in = (Student) st;
+    
+    if(this.compareTo(in))
+      return true;
+    else
+      return false;
+  }// end compareTo()
+  
+  public static void main(String[] args)
+  {
+    
