@@ -1,9 +1,0 @@
-public class NonHourlyEmployee
-{
-  public NonHourlyEmployee(String fn, String ln)
-  {
-    this.setFirstName(fn);
-    this.setLastName(ln);
-    this.setPay(5000);
-  }// end NonHourlyEmployee constructor
-}// end NonHourlyEmployee class
